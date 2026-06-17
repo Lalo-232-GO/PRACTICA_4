@@ -1,7 +1,7 @@
 #include "task_manager.hpp"
 #include "app_config.hpp"
 #include "app_context.hpp"
-#include "messages.hpp"
+#include "mesages.hpp"
 #include "sensor_task.hpp"
 #include "button_task.hpp"
 #include "servo_task.hpp"
@@ -19,31 +19,63 @@ namespace App
     static SensorTaskConfig sensor_cfg 
     { 
         /* CONFIGURACION DEL SENSOR :)*/
+        .channel = LDR_ADC_CHANNEL,
+        .filter_window = FILTER_WINDOW_SIZE,
+        .name = "SENSOR_LDR",
+        .period_ms = SENSOR_PERIOD_MS,
+        .unit_id = LDR_ADC_UNIT
     };
 
     static ServoTaskConfig servo_cfg 
     { 
         /*CONFIGURACION DEL SERVO :)*/
+        .channel = SERVO_PWM_CHANNEL,
+        .freq_hz = SERVO_PWM_FREQ_HZ,
+        .gpio = SERVO_GPIO,
+        .max_us = SERVO_MAX_US,
+        .min_us = SERVO_MIN_US,
+        .mode = SERVO_PWM_MODE,
+        .name = "SERVO",
+        .resolution = SERVO_PWM_RES_BITS,
+        .timer = SERVO_PWM_TIMER
     };
 
     static ButtonTaskConfig start_btn_cfg 
     { 
         /* CONFIGURACION DEL BOTON DE INICIO :)*/
+        .gpio = START_BUTTON_GPIO,
+        .name = "BTN_START",
+        .poll_ms = BUTTON_POLL_MS,
+        .send_on_change_only = true // Revisar si sí es true xd
     };
 
     static ButtonTaskConfig speed_btn_cfg 
     { 
         /* CONFIGURACION DEL BOTON DE VELOCIDAD :)*/
+        .gpio = SPEED_BUTTON_GPIO,
+        .name = "BTN_SPEED",
+        .poll_ms = BUTTON_POLL_MS,
+        .send_on_change_only = true // Revisar si sí es true xd
     };
 
     static ReadyLedTaskConfig ready_led_cfg
     {
         /* CONFIGURACION DEL LED LISTO :)*/
+        .gpio = READY_LED_GPIO,
+        .name = "LED_READY",
+        .off_ms = READY_LED_OFF_MS,
+        .on_ms = READY_LED_ON_MS
     };
 
     static ManagerTaskConfig manager_cfg 
     { 
         /* CONFIGURACION DEL ADMINISTRADOR DE TAREAS :)*/
+        .fast_delay_ms = SERVO_DELAY_FAST_MS,
+        .hold_target_ms = HOLD_TARGET_MS,
+        .name = "MANAGER",
+        .slow_delay_ms = SERVO_DELAY_SLOW_MS,
+        .step_deg = SERVO_STEP_DEG,
+        .tolerance_deg = SERVO_TOLERANCE_DEG
     };
 
     static const char *state_text(eTaskState st)
@@ -105,6 +137,8 @@ namespace App
         while (true)
         {
                 /* IMPLEMENTAR TAREA TASK MANAGER :)*/
+            //
+            ButtonEventType event;
             vTaskDelay(pdMS_TO_TICKS(20));
         }
     }

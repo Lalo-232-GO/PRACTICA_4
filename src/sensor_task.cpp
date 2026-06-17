@@ -1,7 +1,7 @@
 #include "sensor_task.hpp"
 #include "app_config.hpp"
 #include "app_context.hpp"
-#include "messages.hpp"
+#include "mesages.hpp"
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -15,6 +15,7 @@ namespace App
     {
 
         /* AQUI SE IMPLEMENTA EL FILTRO :) */
+        
 
         return v[n / 2];
     }
