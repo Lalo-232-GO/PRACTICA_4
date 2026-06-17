@@ -29,7 +29,7 @@ namespace App
         auto *cfg = static_cast<ServoTaskConfig *>(pvParameters);
 
         ledc_timer_config_t timer_cfg = {
-            .speed_mode = CFG->mode,
+            .speed_mode = cfg->mode,
             .duty_resolution = cfg->resolution,
             .timer_num = cfg->timer,
             .freq_hz = cfg->freq_hz,

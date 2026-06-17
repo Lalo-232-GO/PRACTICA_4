@@ -100,12 +100,12 @@ namespace App
                     case App::ButtonEventType::Start :
                         /* code */
                         //
-                        ButtonEventType::
+                        //ButtonEventType::
                         ESP_LOGI(TAG, "%s presionado...Inicia operación", cfg->name);
                         break;
                     case App::ButtonEventType::SpeedState :
                         //
-
+                        ESP_LOGI(TAG, "%s presionado...Subiendo velocidad", cfg->name);
                         break;
                     default:
                         break;
