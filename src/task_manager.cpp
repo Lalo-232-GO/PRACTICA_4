@@ -16,28 +16,28 @@ namespace App
 {
     static const char *TAG = "MANAGER";
 
-    static SensorTaskConfig sensor_cfg 
+    static SensorTaskConfig sensor_cfg =
     { 
         /* CONFIGURACION DEL SENSOR :)*/
+        .unit_id = AppConfig::LDR_ADC_UNIT,
         .channel = AppConfig::LDR_ADC_CHANNEL,
-        .filter_window = AppConfig::FILTER_WINDOW_SIZE,
-        .name = "SENSOR_LDR",
         .period_ms = AppConfig::SENSOR_PERIOD_MS,
-        .unit_id = AppConfig::LDR_ADC_UNIT
+        .filter_window = AppConfig::FILTER_WINDOW_SIZE,
+        .name = "SENSOR_LDR"
     };
 
     static ServoTaskConfig servo_cfg 
     { 
         /*CONFIGURACION DEL SERVO :)*/
-        .channel = AppConfig::SERVO_PWM_CHANNEL,
-        .freq_hz = AppConfig::SERVO_PWM_FREQ_HZ,
         .gpio = AppConfig::SERVO_GPIO,
-        .max_us = AppConfig::SERVO_MAX_US,
-        .min_us = AppConfig::SERVO_MIN_US,
+        .channel = AppConfig::SERVO_PWM_CHANNEL,
+        .timer = AppConfig::SERVO_PWM_TIMER,
         .mode = AppConfig::SERVO_PWM_MODE,
-        .name = "SERVO",
         .resolution = AppConfig::SERVO_PWM_RES_BITS,
-        .timer = AppConfig::SERVO_PWM_TIMER
+        .freq_hz = AppConfig::SERVO_PWM_FREQ_HZ,
+        .min_us = AppConfig::SERVO_MIN_US,
+        .max_us = AppConfig::SERVO_MAX_US,      
+        .name = "SERVO",
     };
 
     static ButtonTaskConfig start_btn_cfg 
@@ -45,6 +45,7 @@ namespace App
         /* CONFIGURACION DEL BOTON DE INICIO :)*/
         .gpio = AppConfig::START_BUTTON_GPIO,
         .name = "BTN_START",
+        .event_type = App::ButtonEventType::Start,
         .poll_ms = AppConfig::BUTTON_POLL_MS,
         .send_on_change_only = true // Revisar si sí es true xd
     };
@@ -54,6 +55,7 @@ namespace App
         /* CONFIGURACION DEL BOTON DE VELOCIDAD :)*/
         .gpio = AppConfig::SPEED_BUTTON_GPIO,
         .name = "BTN_SPEED",
+        .event_type = App::ButtonEventType::SpeedState,
         .poll_ms = AppConfig::BUTTON_POLL_MS,
         .send_on_change_only = true // Revisar si sí es true xd
     };
@@ -62,20 +64,20 @@ namespace App
     {
         /* CONFIGURACION DEL LED LISTO :)*/
         .gpio = AppConfig::READY_LED_GPIO,
-        .name = "LED_READY",
+        .on_ms = AppConfig::READY_LED_ON_MS,
         .off_ms = AppConfig::READY_LED_OFF_MS,
-        .on_ms = AppConfig::READY_LED_ON_MS
+        .name = "LED_READY" 
     };
 
     static ManagerTaskConfig manager_cfg 
     { 
         /* CONFIGURACION DEL ADMINISTRADOR DE TAREAS :)*/
-        .fast_delay_ms = AppConfig::SERVO_DELAY_FAST_MS,
         .hold_target_ms = AppConfig::HOLD_TARGET_MS,
-        .name = "MANAGER",
+        .tolerance_deg = AppConfig::SERVO_TOLERANCE_DEG,
         .slow_delay_ms = AppConfig::SERVO_DELAY_SLOW_MS,
+        .fast_delay_ms = AppConfig::SERVO_DELAY_FAST_MS,
         .step_deg = AppConfig::SERVO_STEP_DEG,
-        .tolerance_deg = AppConfig::SERVO_TOLERANCE_DEG
+        .name = "MANAGER"
     };
 
     static const char *state_text(eTaskState st)
